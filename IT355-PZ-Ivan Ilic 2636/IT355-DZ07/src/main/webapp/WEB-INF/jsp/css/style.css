@@ -1,0 +1,47 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 7, 2017, 2:52:22 PM
+    Author     : student
+*/
+
+.danger {background-color: #f44336;} /* Red */ 
+.danger:hover {background: #da190b;}
+.btn {
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+     
+}
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+#logoutForm{
+    margin-bottom: 0px;
+
+}
+
+.col-md-offset-3 {
+    margin-left: 10%;
+}
+#pozadina{
+    background-image: url('https://i.ytimg.com/vi/bJ3v6MWep58/maxresdefault.jpg');
+}

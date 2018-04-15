@@ -8,8 +8,10 @@ package com.it355.hibernatecrud.dao;
 import com.it355.hibernatecrud.entity.Favourites;
 import com.it355.hibernatecrud.entity.FavouritesSong;
 import com.it355.hibernatecrud.entity.Genre;
+import com.it355.hibernatecrud.entity.Marka;
 import com.it355.hibernatecrud.entity.Playlist;
 import com.it355.hibernatecrud.entity.Song;
+import com.it355.hibernatecrud.entity.Telefon;
 import com.it355.hibernatecrud.entity.User;
 import java.util.List;
 
@@ -74,4 +76,15 @@ public interface FavouritesDao {
     public Playlist addToPlaylist(Playlist p);
     
    
+    
+    public Marka addMarka(Marka marka);
+    public void deleteMarka(Marka marka);
+    public void editMarka(Marka marka);
+    public Marka getMarkaById(int id);
+    public List<Marka> getMarke();
+    
+    
+      public Telefon addTelefon(Telefon telefon);
+    public List<Telefon> getTelefoni();
+    
 }

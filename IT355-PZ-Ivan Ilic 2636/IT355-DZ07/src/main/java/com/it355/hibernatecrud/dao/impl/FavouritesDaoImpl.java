@@ -9,8 +9,10 @@ import com.it355.hibernatecrud.dao.FavouritesDao;
 import com.it355.hibernatecrud.entity.Favourites;
 import com.it355.hibernatecrud.entity.FavouritesSong;
 import com.it355.hibernatecrud.entity.Genre;
+import com.it355.hibernatecrud.entity.Marka;
 import com.it355.hibernatecrud.entity.Playlist;
 import com.it355.hibernatecrud.entity.Song;
+import com.it355.hibernatecrud.entity.Telefon;
 import com.it355.hibernatecrud.entity.User;
 import java.util.List;
 import org.hibernate.Session;
@@ -244,14 +246,53 @@ public class FavouritesDaoImpl implements FavouritesDao{
     }
 
    
- 
     
-
     
-  
+    @Override
+    @Transactional
+    public Marka addMarka(Marka marka) {
+     return (Marka) getSession().merge(marka);   
+    }
+    
+    @Override
+    @Transactional
+    public void deleteMarka(Marka marka) {
+    getSession().delete(marka);    
+    }
 
-   
+    @Override
+    @Transactional
+    public void editMarka(Marka marka) {
+    getSession().saveOrUpdate(marka);    
+    }
 
-   
+   @Override
+    @Transactional
+    public Marka getMarkaById(int id) {
+    Marka marka = (Marka) getSession().createCriteria(Marka.class).add(Restrictions.eq("id", id)).uniqueResult();
+        return marka;    
+    }
+
+   @Override
+    @Transactional
+    public List<Marka> getMarke() {
+      List<Marka> results = (List<Marka>) getSession().createCriteria(Marka.class).list();
+        return results;    
+    }
+    
+    
+    
+    @Override
+    @Transactional
+    public Telefon addTelefon(Telefon telefon) {
+     return (Telefon) getSession().merge(telefon);   
+    }
+
+     @Override
+    @Transactional
+    public List<Telefon> getTelefoni() {
+      List<Telefon> results = (List<Telefon>) getSession().createCriteria(Telefon.class).list();
+        return results;    
+    }
     
 }

@@ -52,7 +52,7 @@
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <set>
-                <bean class="com.it355.hibernatecrud.converter.IntegerToGenre" />
+                <bean class="com.it355.hibernatecrud.converter.IntegerToMarka" />
             </set>
         </property>
     </bean>

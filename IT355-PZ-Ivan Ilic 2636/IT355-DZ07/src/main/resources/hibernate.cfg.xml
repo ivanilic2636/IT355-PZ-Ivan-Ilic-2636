@@ -3,7 +3,7 @@
 <hibernate-configuration>
     <session-factory>
         <!--dodavanje podesavanja za bazu: url, username, password...-->
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/IT355-DZ05</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/IT355-ispit</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
         <property name="hibernate.connection.pool_size">10</property>

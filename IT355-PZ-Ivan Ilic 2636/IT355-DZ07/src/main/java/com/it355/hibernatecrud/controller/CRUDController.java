@@ -10,6 +10,8 @@ import com.it355.hibernatecrud.entity.Genre;
 import com.it355.hibernatecrud.entity.Playlist;
 import com.it355.hibernatecrud.entity.Song;
 import com.it355.hibernatecrud.entity.User;
+import com.it355.hibernatecrud.entity.Marka;
+import com.it355.hibernatecrud.entity.Telefon;
 import java.security.Principal;
 
 import java.util.List;
@@ -225,5 +227,94 @@ public class CRUDController {
         }
         return model;
     }
+    
+    ////
+    //SA ISPITA
+    ////
+    ///
+    ///
+  
+    
+        @RequestMapping(value = "/addMarka", method = RequestMethod.GET)
+    public String addMarka(Model model) {
+        model.addAttribute("marka", new Marka());
+        return "addMarka";
+    }
 
+    @RequestMapping(value = "/addMarka", method = RequestMethod.POST)
+    public ModelAndView addMarka(@ModelAttribute("marka") Marka p, ModelAndView model) {
+        favouritesDao.addMarka(p);
+        model.addObject("successMsg", "Marka successfully added");
+        return model;
+    }
+    
+    
+    
+    
+       @RequestMapping(value = "/deleteMarka/{id}", method = RequestMethod.GET)
+    public String deleteMarka(@PathVariable("id") int id, HttpServletRequest request) {
+        System.out.println("Fetching & Deleting marka with id " + id);
+        Marka m = favouritesDao.getMarkaById(id);
+        if (m == null) {
+            System.out.println("Unable to delete. Marka with id " + id + " not found");
+            String referer = request.getHeader("Referer");
+            return "redirect:" + referer;
+        }
+
+        favouritesDao.deleteMarka(m);
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+    }
+    
+    
+    
+     @RequestMapping(value = "/editMarka/{id}", method = RequestMethod.GET)
+    public String addMarka(@PathVariable("id") int id, Model model) {
+        Marka marka = favouritesDao.getMarkaById(id);
+        model.addAttribute("marka", marka);
+        
+        return "addMarka";
+    }
+    
+    
+    
+       @RequestMapping(value = "/marke", method = RequestMethod.GET)
+    public ModelAndView getMarke(ModelAndView model) {
+        model.addObject("marke", favouritesDao.getMarke());
+        model.addObject("marka", new Marka());
+        return model;
+    }
+    
+    
+    //////
+    /////TELEFON
+    /////
+    
+     @RequestMapping(value = "/addTelefon", method = RequestMethod.GET)
+    public String addTelefon(Model model) {
+        model.addAttribute("telefon", new Telefon());
+        model.addAttribute("marke", favouritesDao.getMarke());
+        return "addTelefon";
+    }
+
+    @RequestMapping(value = "/addTelefon", method = RequestMethod.POST)
+    public ModelAndView addTelefon(@ModelAttribute("telefon") Telefon p, ModelAndView model,HttpServletRequest request) {
+       Principal principal = request.getUserPrincipal();
+        p.setKorisnikusername(principal.getName());
+        p = favouritesDao.addTelefon(p);
+        model.addObject("marke", favouritesDao.getMarke());
+        model.addObject("successMsg", "Telefon successfully added");
+        model.addObject("telefon", p);
+        return model;
+
+    }
+    
+    @RequestMapping(value = "/telefoni", method = RequestMethod.GET)
+    public ModelAndView getTelefoni(ModelAndView model) {
+        model.addObject("telefoni", favouritesDao.getTelefoni());
+        model.addObject("telefon", new Telefon());
+        return model;
+    }
+    
+    
 }
